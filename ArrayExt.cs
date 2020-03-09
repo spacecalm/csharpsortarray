@@ -1,13 +1,28 @@
 ﻿namespace System.ArrayExt
 {
+
+    public delegate bool SortOperation(IComparable a, IComparable b);
     public static class ArrayExt
     {
-        public static void SortIComparable<T>(T[] array, SortDirection  sortDirection = SortDirection.GEATER) where T : IComparable
+        /// <summary>
+        ///  Sort array whith object type of IComparable
+        ///  <example>For example:
+        /// <code>
+        ///    (a,b) => a.CompareTo(b) == -1
+        /// </code>
+        /// sorts array from larger to smaller.
+        /// </example>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array">operated array type IComparable</param>
+        /// <param name="sortOperation">1 argument - first position array for sort, 2 argument - second position array for sort</param>
+        /// <example>dHello</example>
+        public static void SortIComparable<T>(T[] array, SortOperation sortOperation) where T : IComparable
         {
             T exchange = default;
             for (int i = 0; i < array.Length; i++)
                 for (int j = i + 1; j < array.Length; j++)
-                    if (array[i].CompareTo(array[j]) == (int)sortDirection)
+                    if (sortOperation(array[i],array[j]))
                     {
                         exchange = array[i];
                         array[i] = array[j];
@@ -15,11 +30,4 @@
                     }
         }
     }
-
-    public enum SortDirection : int
-    {
-        LESS = 1,
-        GEATER = -1
-    }
-
 }
