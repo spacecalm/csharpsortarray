@@ -10,13 +10,13 @@ namespace sharpsortarray
         static void Main()
         {
             int[] arrayInt = RandomExt.GetRandomArrayInt(10, -30, 30);
-            ArrayExt.SortIComparable(arrayInt,-1);
+            ArrayExt.SortIComparable(arrayInt, SortDirection.GEATER);
             ConsoleExt.WriteArrayIFormattable(arrayInt);
 
             Console.WriteLine();
 
             double[] arrayDouble = RandomExt.GetRandomArrayDouble(5);
-            ArrayExt.SortIComparable(arrayDouble,1);
+            ArrayExt.SortIComparable(arrayDouble,SortDirection.LESS);
             ConsoleExt.WriteArrayIFormattable(arrayDouble);
 
             Console.ReadKey();
