@@ -1,14 +1,14 @@
 ﻿namespace System.ArrayExt
 {
 
-    public delegate bool SortOperation(IComparable a, IComparable b);
+    public delegate bool SortOperation(object a, object b);
     public static class ArrayExt
     {
         /// <summary>
-        ///  Sort array whith object type of IComparable
+        ///  Sort array
         ///  <example>For example:
         /// <code>
-        ///    (a,b) => a.CompareTo(b) == -1
+        ///    (a,b) => ((int)a.)CompareTo(b) == -1
         /// </code>
         /// sorts array from larger to smaller.
         /// </example>
@@ -16,8 +16,7 @@
         /// <typeparam name="T"></typeparam>
         /// <param name="array">operated array type IComparable</param>
         /// <param name="sortOperation">1 argument - first position array for sort, 2 argument - second position array for sort</param>
-        /// <example>dHello</example>
-        public static void SortIComparable<T>(T[] array, SortOperation sortOperation) where T : IComparable
+        public static void Sort<T>(T[] array, SortOperation sortOperation)
         {
             T exchange = default;
             for (int i = 0; i < array.Length; i++)
